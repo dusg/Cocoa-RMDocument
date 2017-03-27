@@ -122,7 +122,7 @@ static void* DocumentKVOContext;
     employees = a;
     
     for (Person* person in employees) {
-        [self stopObservingPerson:person];
+        [self startObservingPerson:person];
     }
 }
 + (BOOL)autosavesInPlace {
@@ -136,6 +136,9 @@ static void* DocumentKVOContext;
     return @"RMDocument";
 }
 
+-(void)windowControllerDidLoadNib:(NSWindowController *)windowController {
+    [super windowControllerDidLoadNib:windowController];
+}
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
     // Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
@@ -146,15 +149,41 @@ static void* DocumentKVOContext;
     [[tableView window] endEditingFor:nil];
     
     //保存employees数据,要先转换成nsdata类型
-    return nil;
+    return [NSKeyedArchiver archivedDataWithRootObject:employees];
 }
 
+//另外一种写法
+//-(BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError * _Nullable __autoreleasing *)outError {
+//    
+//    NSData* data = [NSData dataWithContentsOfURL:url];
+//    return [self readFromData:data ofType:typeName error:outError];
+//}
 
+//从文件中读取数据,数据是NSData类型
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
     // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
     // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
     // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-    [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
+//    [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
+    
+    NSLog(@"从'%@'类型的文件中读取数据...",typeName);
+    NSMutableArray* newArray = nil;
+    
+    @try {
+        newArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    } @catch (NSException *exception) {
+        NSLog(@"异常=%@",exception);
+        if (outError) {
+            NSDictionary* d = [NSDictionary dictionaryWithObject:@"读取数据异常" forKey:NSLocalizedFailureReasonErrorKey];
+            
+            *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:d];
+        }
+        return NO;
+    } @finally {
+        //do nothing
+    }
+    [self setEmployees:newArray];
+    
     return YES;
 }
 

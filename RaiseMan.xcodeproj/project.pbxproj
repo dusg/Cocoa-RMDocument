@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C8926F941E87B663004FD669 /* RM.icns in Resources */ = {isa = PBXBuildFile; fileRef = C8926F931E87B663004FD669 /* RM.icns */; };
 		C89E4DF41E5D1B680014FB44 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C89E4DF31E5D1B680014FB44 /* AppDelegate.m */; };
 		C89E4DF71E5D1B680014FB44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C89E4DF61E5D1B680014FB44 /* main.m */; };
 		C89E4DFA1E5D1B680014FB44 /* RMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C89E4DF91E5D1B680014FB44 /* RMDocument.m */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C8926F931E87B663004FD669 /* RM.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = RM.icns; sourceTree = "<group>"; };
 		C89E4DEF1E5D1B680014FB44 /* RaiseMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RaiseMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C89E4DF21E5D1B680014FB44 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C89E4DF31E5D1B680014FB44 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		C89E4DF51E5D1B680014FB44 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C8926F931E87B663004FD669 /* RM.icns */,
 				C89E4DF61E5D1B680014FB44 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -256,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C89E4DFF1E5D1B680014FB44 /* Assets.xcassets in Resources */,
+				C8926F941E87B663004FD669 /* RM.icns in Resources */,
 				C89E4DFD1E5D1B680014FB44 /* RMDocument.xib in Resources */,
 				C89E4E021E5D1B680014FB44 /* MainMenu.xib in Resources */,
 			);
